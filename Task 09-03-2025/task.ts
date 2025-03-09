@@ -102,34 +102,50 @@ function save(event) {
     }
 
     productss.push(product1);
-    localStorage.setItem("Products", JSON.stringify(productss))
+    localStorage.setItem("Products", JSON.stringify(productss));
+    (document.getElementById("successMessage") as HTMLInputElement).innerHTML =
+        `<div class="alert alert-success" role="alert">
+        Product saved successfully!
+    </div>`;
+
+    // (document.getElementById("formContainer") as HTMLFormElement).reset();
+    (document.getElementById("name") as HTMLInputElement).value = '';
+    (document.getElementById("description") as HTMLInputElement).value = '';
+    (document.getElementById("price") as HTMLInputElement).value = '';
+    (document.getElementById("quantity") as HTMLInputElement).value = '';
+    (document.getElementById("successMessage") as HTMLDivElement).classList = "d-block";
 }
 
 function loadData() {
+    (document.getElementById("successMessage") as HTMLDivElement).classList = "d-none";
     let dataContainer = document.getElementById("data")
     if (dataContainer) {
 
         dataContainer.innerHTML = "";
 
-        productss.forEach(product => {
-            // dataContainer.innerHTML += `
-            // <p>${product.name}</p>
-            // <p>${product.description}</p>
-            // <p>${product.price}</p>
-            // <p>${product.quantity}</p>
-            // `
-
-            dataContainer.innerHTML += `
+        if(productss.length != 0){
+            productss.forEach(product => {
+                // dataContainer.innerHTML += `
+                // <p>${product.name}</p>
+                // <p>${product.description}</p>
+                // <p>${product.price}</p>
+                // <p>${product.quantity}</p>
+                // `
+    
+                dataContainer.innerHTML += `
             <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">${product.name}</h5>
-    <h6 class="card-subtitle mb-2 text-body-secondary">${product.description}</h6>
-    <p class="card-text">${product.price}$</p>
-    <p class="card-text">QTY: ${product.quantity}</p>
-  </div>
-</div>
-            `
-        })
+                <div class="card-body">
+                    <h5 class="card-title">${product.name}</h5>
+                    <h6 class="card-subtitle mb-3">${product.description}</h6>
+                    <p class="card-text mb-0"><strong>Price:</strong> ${product.price}$</p>
+                    <p class="card-text"><strong>QTY:</strong> ${product.quantity}</p>
+                </div>
+            </div>`
+            })
+        }
+        else{
+            dataContainer.innerHTML = `<p class="text-body-secondary">No Products To View!</p>`
+        }
     }
 }
 

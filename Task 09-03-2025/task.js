@@ -64,19 +64,33 @@ function save(event) {
     };
     productss.push(product1);
     localStorage.setItem("Products", JSON.stringify(productss));
+    document.getElementById("successMessage").innerHTML =
+        "<div class=\"alert alert-success\" role=\"alert\">\n        Product saved successfully!\n    </div>";
+    // (document.getElementById("formContainer") as HTMLFormElement).reset();
+    document.getElementById("name").value = '';
+    document.getElementById("description").value = '';
+    document.getElementById("price").value = '';
+    document.getElementById("quantity").value = '';
+    document.getElementById("successMessage").classList = "d-block";
 }
 function loadData() {
+    document.getElementById("successMessage").classList = "d-none";
     var dataContainer = document.getElementById("data");
     if (dataContainer) {
         dataContainer.innerHTML = "";
-        productss.forEach(function (product) {
-            // dataContainer.innerHTML += `
-            // <p>${product.name}</p>
-            // <p>${product.description}</p>
-            // <p>${product.price}</p>
-            // <p>${product.quantity}</p>
-            // `
-            dataContainer.innerHTML += "\n            <div class=\"card\" style=\"width: 18rem;\">\n  <div class=\"card-body\">\n    <h5 class=\"card-title\">".concat(product.name, "</h5>\n    <h6 class=\"card-subtitle mb-2 text-body-secondary\">").concat(product.description, "</h6>\n    <p class=\"card-text\">").concat(product.price, "$</p>\n    <p class=\"card-text\">QTY: ").concat(product.quantity, "</p>\n  </div>\n</div>\n            ");
-        });
+        if (productss.length != 0) {
+            productss.forEach(function (product) {
+                // dataContainer.innerHTML += `
+                // <p>${product.name}</p>
+                // <p>${product.description}</p>
+                // <p>${product.price}</p>
+                // <p>${product.quantity}</p>
+                // `
+                dataContainer.innerHTML += "\n            <div class=\"card\" style=\"width: 18rem;\">\n                <div class=\"card-body\">\n                    <h5 class=\"card-title\">".concat(product.name, "</h5>\n                    <h6 class=\"card-subtitle mb-3\">").concat(product.description, "</h6>\n                    <p class=\"card-text mb-0\"><strong>Price:</strong> ").concat(product.price, "$</p>\n                    <p class=\"card-text\"><strong>QTY:</strong> ").concat(product.quantity, "</p>\n                </div>\n            </div>");
+            });
+        }
+        else {
+            dataContainer.innerHTML = "<p class=\"text-body-secondary\">No Products To View!</p>";
+        }
     }
 }
