@@ -1,0 +1,27 @@
+.formContainer {
+    width: 50%;
+    justify-self: center;
+    margin-top: 5%;
+}
+
+.form-group {
+    margin-bottom: 20px !important;
+}
+
+#successMessage {
+    width: 50%;
+    justify-self: center;
+    text-align: center;
+    margin-top: 10px;
+}
+
+a {
+    text-decoration: none !important;
+    cursor: pointer;
+}
+
+.btns {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
