@@ -13,6 +13,14 @@ function addTask(event) {
     let taskDescription = (document.getElementById("description") as HTMLInputElement).value
     let taskID = tasksList.length + 1;
 
+    if (taskName.trim() == "" || taskDescription.trim() == "") {
+        (document.getElementById("message") as HTMLInputElement).innerHTML =
+            `<div class="alert alert-danger" role="alert">
+                 Please Fill All Feilds!
+             </div>`;
+        return
+    }
+
     let task: Task = {
         id: taskID,
         name: taskName,
@@ -23,7 +31,7 @@ function addTask(event) {
     tasksList.push(task)
     localStorage.setItem("Tasks", JSON.stringify(tasksList));
 
-    (document.getElementById("successMessage") as HTMLInputElement).innerHTML =
+    (document.getElementById("message") as HTMLInputElement).innerHTML =
         `<div class="alert alert-success" role="alert">
     Task Added successfully!
 </div>`;
@@ -33,13 +41,13 @@ function addTask(event) {
     displayTasks()
 }
 
-function displayTasks(){
+function displayTasks() {
     let tasksContainer = document.getElementById("tasksContainer");
-    if(tasksContainer){
+    if (tasksContainer) {
         tasksContainer.innerHTML = "";
         tasksList.forEach(task => {
-            tasksContainer.innerHTML += 
-            `
+            tasksContainer.innerHTML +=
+                `
             <tr>
                 <th scope="row">${task.id}</th>
                     <td>${task.name}</td>
@@ -52,17 +60,17 @@ function displayTasks(){
                     </td>
             </tr>
             `
-            if(task.status=="To Do"){
-                (document.getElementById(`btns${task.id}`) as HTMLTableCellElement).innerHTML += 
-                `
+            if (task.status == "To Do") {
+                (document.getElementById(`btns${task.id}`) as HTMLTableCellElement).innerHTML +=
+                    `
                 <a onclick="completed(${task.id})" class="text-success" data-mdb-tooltip-init title="Completed">
                     <i class="far fa-square"></i>
                 </a>
                 `
             }
-            else{
-                (document.getElementById(`btns${task.id}`) as HTMLTableCellElement).innerHTML += 
-                `
+            else {
+                (document.getElementById(`btns${task.id}`) as HTMLTableCellElement).innerHTML +=
+                    `
                 <a onclick="toDo(${task.id})" class="text-success" data-mdb-tooltip-init title="Completed">
                     <i class="fas fa-check-square"></i>
                 </a>
@@ -74,11 +82,11 @@ function displayTasks(){
 
 displayTasks();
 
-function deleteTask(id : number){
+function deleteTask(id: number) {
     tasksList = tasksList.filter(task => task.id !== id);
 
     tasksList = tasksList.map((task, index) => ({
-        ...task,  
+        ...task,
         id: index + 1,
     }));
 
@@ -86,9 +94,9 @@ function deleteTask(id : number){
     displayTasks()
 }
 
-function completed (id : number){
+function completed(id: number) {
     tasksList.forEach(task => {
-        if (task.id == id){
+        if (task.id == id) {
             task.status = "Completed"
         }
     })
@@ -97,9 +105,9 @@ function completed (id : number){
     displayTasks()
 }
 
-function toDo (id : number){
+function toDo(id: number) {
     tasksList.forEach(task => {
-        if (task.id == id){
+        if (task.id == id) {
             task.status = "To Do"
         }
     })

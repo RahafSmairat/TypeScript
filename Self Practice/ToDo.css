@@ -1,3 +1,24 @@
+body {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    background-color: #F8C8DC;
+  }
+  body::before {
+    content: ''; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('hearts.gif');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    opacity: 1; 
+    z-index: -1; 
+  }
+
 .formContainer {
     width: 50%;
     justify-self: center;
@@ -8,7 +29,7 @@
     margin-bottom: 20px !important;
 }
 
-#successMessage {
+#message {
     width: 50%;
     justify-self: center;
     text-align: center;
@@ -24,4 +45,35 @@ a {
     display: flex;
     flex-direction: row;
     gap: 20px;
+}
+
+.pink{
+    color: #DE3163;
+}
+
+form .btn{
+    background-color: #DE3163;
+    color: white;
+}
+
+form .btn:hover{
+    background-color: #F8C8DC !important;
+    /* color: white !important; */
+}
+
+form input{
+    border: 3px solid transparent !important;
+    box-shadow: 0 0 1px 1px #F8C8DC !important;
+    margin-top: 2%;
+}
+
+form input:focus{
+    /* outline: 3px solid #DE3163 !important; */
+    box-shadow: 0 0 2px 2px #DE3163 !important;
+    border: 3px solid transparent !important;
+}
+
+.card{
+    box-shadow: 0 0 15px #DE3163 !important;
+    border: none;
 }

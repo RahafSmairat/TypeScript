@@ -15,6 +15,11 @@ function addTask(event) {
     var taskName = document.getElementById("name").value;
     var taskDescription = document.getElementById("description").value;
     var taskID = tasksList.length + 1;
+    if (taskName.trim() == "" || taskDescription.trim() == "") {
+        document.getElementById("message").innerHTML =
+            "<div class=\"alert alert-danger\" role=\"alert\">\n                 Please Fill All Feilds!\n             </div>";
+        return;
+    }
     var task = {
         id: taskID,
         name: taskName,
@@ -23,7 +28,7 @@ function addTask(event) {
     };
     tasksList.push(task);
     localStorage.setItem("Tasks", JSON.stringify(tasksList));
-    document.getElementById("successMessage").innerHTML =
+    document.getElementById("message").innerHTML =
         "<div class=\"alert alert-success\" role=\"alert\">\n    Task Added successfully!\n</div>";
     document.getElementById("name").value = '';
     document.getElementById("description").value = '';
