@@ -1,11 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+*:not(i) {
+    font-family: "Comic Neue", cursive;
+    font-weight: bold;
+}
+
 body {
     margin: 0;
     padding: 0;
     position: relative;
     background-color: #F8C8DC;
-  }
-  body::before {
-    content: ''; 
+}
+
+body::before {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -15,26 +23,72 @@ body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    opacity: 1; 
-    z-index: -1; 
-  }
+    opacity: 1;
+    z-index: -1;
+}
 
+/*Form Style Start*/
 .formContainer {
-    width: 50%;
+    width: 80%;
     justify-self: center;
     margin-top: 5%;
+}
+
+.group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.group .form-group {
+    width: 45%;
 }
 
 .form-group {
     margin-bottom: 20px !important;
 }
 
+.btn {
+    justify-self: center;
+    display: flex;
+    width: 20%;
+    justify-content: center;
+    margin-top: 2%;
+}
+
+form .btn {
+    background-color: #DE3163;
+    color: white;
+}
+
+form .btn:hover {
+    background-color: #F8C8DC !important;
+}
+
+form input {
+    border: 3px solid transparent !important;
+    box-shadow: 0 0 1px 1px #F8C8DC !important;
+    margin-top: 2%;
+}
+
+form input:focus {
+    box-shadow: 0 0 2px 2px #DE3163 !important;
+    border: 3px solid transparent !important;
+}
+/*Form Style End*/
+
+/*-------------------------------------------------*/
+
+/*Alert message style*/
 #message {
     width: 50%;
     justify-self: center;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
+
+/*-------------------------------------------------*/
 
 a {
     text-decoration: none !important;
@@ -47,33 +101,16 @@ a {
     gap: 20px;
 }
 
-.pink{
+.pink {
     color: #DE3163;
 }
 
-form .btn{
-    background-color: #DE3163;
-    color: white;
-}
-
-form .btn:hover{
-    background-color: #F8C8DC !important;
-    /* color: white !important; */
-}
-
-form input{
-    border: 3px solid transparent !important;
-    box-shadow: 0 0 1px 1px #F8C8DC !important;
-    margin-top: 2%;
-}
-
-form input:focus{
-    /* outline: 3px solid #DE3163 !important; */
-    box-shadow: 0 0 2px 2px #DE3163 !important;
-    border: 3px solid transparent !important;
-}
-
-.card{
+.card {
     box-shadow: 0 0 15px #DE3163 !important;
     border: none;
+}
+
+/*Table Style*/
+thead th{
+    background-color: #F8C8DC !important;
 }
